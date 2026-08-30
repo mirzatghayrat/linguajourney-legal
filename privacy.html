@@ -36,11 +36,6 @@
     font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
     color: #1c1b19; background: #fbf8f3;
   }
-  @media (prefers-color-scheme: dark) {
-    body { color: #ece8e1; background: #16151a; }
-    h1, h2 { color: #fff; }
-    .card { background: #211f26; border-color: #302d38; }
-  }
   h1 { font-size: 1.9rem; letter-spacing: -0.02em; margin-bottom: .25rem; }
   h2 { font-size: 1.15rem; margin-top: 2.5rem; letter-spacing: -0.01em; }
   .updated { color: #6c6862; font-size: .9rem; margin-top: 0; }
@@ -52,6 +47,16 @@
   li { margin: .4rem 0; }
   hr { border: 0; border-top: 1px solid #e5ded2; margin: 4rem 0 2.5rem; }
   code { font-size: .9em; background: rgba(128,128,128,.14); padding: .1em .35em; border-radius: 4px; }
+  /* Kept LAST on purpose. This block used to sit directly under `body`, above
+     the `.card` rule it overrides — same specificity, earlier in source, so the
+     base `background: #fff` won and the card rendered white with near-white
+     text on it: 1.22:1, effectively invisible, and only in dark mode. Nothing
+     catches that except opening the page. */
+  @media (prefers-color-scheme: dark) {
+    body { color: #ece8e1; background: #16151a; }
+    h1, h2 { color: #fff; }
+    .card { background: #211f26; border-color: #302d38; }
+  }
 </style>
 </head>
 <body>
